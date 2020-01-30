@@ -20,7 +20,6 @@ namespace InfraData.Repositories
         {
             await _context.Set<T>().AddAsync(model);
             await _context.SaveChangesAsync();
-
         }
 
         public Task Delete(Guid id)

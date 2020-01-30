@@ -11,7 +11,8 @@ namespace InfraData.Migrations
                 name: "Departments",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false)
+                     .Annotation("Sqlite.Autoincrement", true),,
                     Name = table.Column<string>(maxLength: 255, nullable: false),
                     Description = table.Column<string>(maxLength: 255, nullable: false)
                 },
@@ -24,7 +25,8 @@ namespace InfraData.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false)
+                     .Annotation("Sqlite.Autoincrement", true),,
                     Name = table.Column<string>(maxLength: 255, nullable: false),
                     Contact = table.Column<string>(maxLength: 30, nullable: false),
                     Cpf = table.Column<string>(maxLength: 11, nullable: false),

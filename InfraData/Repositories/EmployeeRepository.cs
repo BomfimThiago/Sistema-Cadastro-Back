@@ -25,9 +25,10 @@ namespace InfraData.Repositories
 
         public Task<List<Employee>> Search(string q, Guid? departmentId)
         {
-            var employees = _context.Employees 
-                .Where(x => string.IsNullOrEmpty(q) || EF.Functions.Like(x.Name, $"%{q}%") 
-                || !departmentId.HasValue || x.DepartmentId == departmentId);
+            var employees = _context.Employees
+                .Where(x => string.IsNullOrEmpty(q) || EF.Functions.Like(x.Name, $"%{q}%"))
+                .Where(x => !departmentId.HasValue || x.DepartmentId == departmentId);
+                 
 
             return employees.ToListAsync();
         }
