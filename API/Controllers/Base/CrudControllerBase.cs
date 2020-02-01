@@ -1,18 +1,28 @@
-﻿using Domain.Domain.Base;
+﻿using API.ViewModels.Base;
+using API.ViewModels.Base.Interfaces;
+using AutoMapper;
+using Domain.Domain.Base;
 using Domain.Entities.Base;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
+
 namespace API.Controllers.Base
 {
 
-    public class CrudControllerBase<T> : ControllerBase where T : Entity
+    public class CrudControllerBase<T, TViewModelCadastro> : 
+        ControllerBase 
+        where T : Entity
+        where TViewModelCadastro : EntityViewModel
     {
         private readonly IBaseDomain<T> _domain;
-        public CrudControllerBase(IBaseDomain<T> domain)
+        private readonly IMapper _mapper;
+
+        public CrudControllerBase(IBaseDomain<T> domain, IMapper mapper)
         {
             _domain = domain;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -28,17 +38,21 @@ namespace API.Controllers.Base
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> Create([FromBody] T model)
+        public virtual async Task<IActionResult> Create([FromBody] TViewModelCadastro model)
         {
-            await _domain.AddAsync(model);
+            var objectToCreate = _mapper.Map<TViewModelCadastro, T>(model);
+            
+            await _domain.AddAsync(objectToCreate);
 
-            return CreatedAtAction("GetById", new { id = model.Id }, model);
+            return StatusCode(201);
         }
 
         [HttpPut("{id}")]
-        public virtual async Task<IActionResult> Update([FromBody] T model)
+        public virtual async Task<IActionResult> Update([FromBody] TViewModelCadastro model)
         {
-            await _domain.Update(model);
+            var objectToUpdate = _mapper.Map<TViewModelCadastro, T>(model);
+            
+            await _domain.Update(objectToUpdate);
 
             return NoContent();
         }

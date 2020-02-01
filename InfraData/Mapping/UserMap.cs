@@ -10,6 +10,8 @@ namespace InfraData.Mapping
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Property(x => x.Username).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.PasswordHash).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.PasswordSalt).HasMaxLength(255).IsRequired();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace API.ViewModels
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Imagem { get; set; }
+        public string Image { get; set; }
         public List<EmployeeViewModel> Employees { get; set; }
     }
 }

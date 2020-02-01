@@ -11,10 +11,10 @@ namespace InfraData.Migrations
                 name: "Departments",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false)
-                     .Annotation("Sqlite.Autoincrement", true),,
+                    Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 255, nullable: false),
-                    Description = table.Column<string>(maxLength: 255, nullable: false)
+                    Description = table.Column<string>(maxLength: 255, nullable: false),
+                    Image = table.Column<string>(maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -22,11 +22,24 @@ namespace InfraData.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Username = table.Column<string>(maxLength: 255, nullable: false),
+                    PasswordHash = table.Column<byte[]>(maxLength: 255, nullable: false),
+                    PasswordSalt = table.Column<byte[]>(maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false)
-                     .Annotation("Sqlite.Autoincrement", true),,
+                    Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 255, nullable: false),
                     Contact = table.Column<string>(maxLength: 30, nullable: false),
                     Cpf = table.Column<string>(maxLength: 11, nullable: false),
@@ -57,6 +70,9 @@ namespace InfraData.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Departments");

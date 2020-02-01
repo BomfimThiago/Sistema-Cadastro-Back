@@ -1,6 +1,5 @@
 ﻿using Domain.Entities;
 using FluentValidation;
-using System;
 
 namespace Domain.Domain.Departments
 {
@@ -15,7 +14,7 @@ namespace Domain.Domain.Departments
 
             RuleFor(x => x.Description).NotNull().NotEmpty().MaximumLength(20);
             
-            RuleFor(x => x.Imagem).NotNull().NotEmpty();
+            RuleFor(x => x.Image).NotNull().NotEmpty();
         }
     }
 }

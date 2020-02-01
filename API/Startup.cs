@@ -1,5 +1,5 @@
-
 using AutoMapper;
+using Domain.Domain.Auth;
 using Domain.Domain.Departments;
 using Domain.Domain.Employees;
 using InfraData;
@@ -29,18 +29,17 @@ namespace API
         {
             services.AddCors();
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllers().AddNewtonsoftJson(x =>
-            x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
+            services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(x =>
 
-              x.UseSqlite(Configuration.GetConnectionString("DEFAULT"))
+              x.UseSqlServer(Configuration.GetConnectionString("DEFAULT"))
            );
             
             services.AddScoped<IEmployeeDomain, EmployeeDomain>();
             services.AddScoped<IDepartmentDomain, DepartmentDomain>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IDepartmentRepository, DeparmentRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
 
             services.AddSwaggerGen(c =>
             {
@@ -77,9 +76,6 @@ namespace API
             {
                 endpoints.MapControllers();
             });
-
-           
-
         }
     }
 }

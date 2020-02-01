@@ -11,7 +11,7 @@ namespace InfraData
         {
             builder.Property(x => x.Name).HasMaxLength(255).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(255).IsRequired();
-            builder.Property(x => x.Imagem).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.Image).HasMaxLength(255).IsRequired();
 
             builder.HasMany(x => x.Employees).WithOne(x => x.Department);
 
