@@ -1,8 +1,8 @@
 ﻿using API.ViewModels.Base;
-using API.ViewModels.Base.Interfaces;
 using AutoMapper;
 using Domain.Domain.Base;
 using Domain.Entities.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -25,12 +25,14 @@ namespace API.Controllers.Base
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public virtual async Task<IActionResult> GetAllAsync()
         {
             return Ok(await _domain.GetAllAsync());
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public virtual IActionResult GetById(Guid id)
         {
