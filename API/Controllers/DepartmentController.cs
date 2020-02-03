@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {   
-   
+    [Authorize]
     [Route("api/[controller]")]
     public class DepartmentController : CrudControllerBase<Department, DepartmentViewModelCadastro>
     {
@@ -22,6 +22,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
+        
         [HttpPost]
         public override async Task<IActionResult> Create([FromBody] DepartmentViewModelCadastro model)
         {
