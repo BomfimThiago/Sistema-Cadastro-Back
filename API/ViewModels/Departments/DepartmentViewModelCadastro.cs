@@ -2,7 +2,7 @@
 
 namespace API.ViewModels.Departments
 {
-    public class DepartmentViewModelCadastro : EntityViewModel
+    public class DepartmentViewModelCadastro 
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -3,7 +3,7 @@ using System;
 
 namespace API.ViewModels.Employees
 {
-    public class EmployeeViewModelCadastro : EntityViewModel
+    public class EmployeeViewModelCadastro 
     {
         public string Name { get; set; }
         public string Contact { get; set; }

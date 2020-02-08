@@ -49,13 +49,12 @@ namespace API.Controllers
             var validationResult = await validator.ValidateAsync(employeeToCreate);
 
             if (!validationResult.IsValid)
-            
             {
                 return BadRequest(validationResult.Errors);
             }
             await _domain.AddAsync(employeeToCreate);
 
-            return CreatedAtAction("GetById", new { id = model.Id }, model);
+            return StatusCode(201);
         }
 
         [HttpPut("{id}")]
