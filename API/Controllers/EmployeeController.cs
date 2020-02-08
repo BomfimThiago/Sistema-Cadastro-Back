@@ -1,5 +1,5 @@
 ﻿using API.Controllers.Base;
-
+using API.ViewModels;
 using API.ViewModels.Employees;
 using AutoMapper;
 using Domain.Domain.Employees;
@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
     [Route("api/[controller]")]
-    public class EmployeeController : CrudControllerBase<Employee, EmployeeViewModelCadastro>
+    public class EmployeeController : CrudControllerBase<Employee, EmployeeViewModelCadastro, 
+        EmployeeViewModel>
     {
         private readonly IEmployeeDomain _domain;
         private readonly IMapper _mapper;
@@ -35,7 +36,8 @@ namespace API.Controllers
         [HttpGet("search/{departmentId}")]
         public async Task<IActionResult> GetEmployeesByDepartmentId(Guid departmentId)
         {
-            return Ok(await _domain.GetEmployeesByDepartmentId(departmentId));
+            var employees = await _domain.GetEmployeesByDepartmentId(departmentId);
+            return Ok(_mapper.Map<List<Employee>, List<EmployeeViewModelSimplificada>>(employees));
         }
 
         [HttpPost]

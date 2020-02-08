@@ -1,20 +1,18 @@
-﻿using API.ViewModels.Base;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Domain.Base;
 using Domain.Entities.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
 namespace API.Controllers.Base
 {
-
-    public class CrudControllerBase<T, TViewModelCadastro> : 
+    public class CrudControllerBase<T, TViewModelCadastro, TViewModel> : 
         ControllerBase 
         where T : Entity
-        where TViewModelCadastro : EntityViewModel
     {
         private readonly IBaseDomain<T> _domain;
         private readonly IMapper _mapper;
@@ -29,14 +27,17 @@ namespace API.Controllers.Base
         [HttpGet]
         public virtual async Task<IActionResult> GetAllAsync()
         {
-            return Ok(await _domain.GetAllAsync());
+            var objectToGet = await _domain.GetAllAsync();
+            return Ok( _mapper.Map<List<TViewModel>>(objectToGet));
         }
 
         [AllowAnonymous]
         [HttpGet("{id}")]
         public virtual IActionResult GetById(Guid id)
         {
-            return Ok( _domain.GetById(id));
+            var objectToGet = _domain.GetById(id);
+
+            return Ok(_mapper.Map<TViewModel>(objectToGet));
         }
 
         [HttpPost]

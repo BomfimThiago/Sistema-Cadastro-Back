@@ -1,4 +1,5 @@
 ﻿using API.Controllers.Base;
+using API.ViewModels;
 using API.ViewModels.Departments;
 using AutoMapper;
 using Domain.Domain.Departments;
@@ -11,7 +12,7 @@ namespace API.Controllers
 {   
     [Authorize]
     [Route("api/[controller]")]
-    public class DepartmentController : CrudControllerBase<Department, DepartmentViewModelCadastro>
+    public class DepartmentController : CrudControllerBase<Department, DepartmentViewModelCadastro, DepartmentViewModel>
     {
         private readonly IDepartmentDomain _departmentDomain;
         private readonly IMapper _mapper;

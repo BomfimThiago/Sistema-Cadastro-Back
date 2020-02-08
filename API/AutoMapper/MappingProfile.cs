@@ -4,6 +4,7 @@ using API.ViewModels.Employees;
 using AutoMapper;
 using Domain.Entities;
 
+
 namespace API.AutoMapper
 {
     public class MappingProfile : Profile
@@ -14,6 +15,7 @@ namespace API.AutoMapper
             
             CreateMap<Employee, EmployeeViewModel>();
             CreateMap<Employee, EmployeeViewModelSimplificada>();
+           
 
             CreateMap<DepartmentViewModel, Department>();
             CreateMap<EmployeeViewModel, Employee>();
