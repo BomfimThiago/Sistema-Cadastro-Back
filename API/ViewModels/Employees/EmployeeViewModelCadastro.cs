@@ -1,5 +1,4 @@
-﻿using API.ViewModels.Base;
-using System;
+﻿using System;
 
 namespace API.ViewModels.Employees
 {

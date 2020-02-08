@@ -4,6 +4,7 @@ using API.ViewModels.Employees;
 using AutoMapper;
 using Domain.Domain.Employees;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class EmployeeController : CrudControllerBase<Employee, EmployeeViewModelCadastro, 
         EmployeeViewModel>
@@ -24,7 +26,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
         
-
+        [AllowAnonymous]
         [HttpGet("search")]
         public async Task<IActionResult> Search(string q, Guid? departmentId)
         {
@@ -33,6 +35,7 @@ namespace API.Controllers
                     
         }
 
+        [AllowAnonymous]
         [HttpGet("search/{departmentId}")]
         public async Task<IActionResult> GetEmployeesByDepartmentId(Guid departmentId)
         {

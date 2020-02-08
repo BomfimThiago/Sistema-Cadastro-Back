@@ -4,11 +4,13 @@ using API.ViewModels.Departments;
 using AutoMapper;
 using Domain.Domain.Departments;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {   
+    [Authorize]
     [Route("api/[controller]")]
     public class DepartmentController : CrudControllerBase<Department, DepartmentViewModelCadastro, DepartmentViewModel>
     {

@@ -1,6 +1,4 @@
-﻿using API.ViewModels.Base;
-
-namespace API.ViewModels.Departments
+﻿namespace API.ViewModels.Departments
 {
     public class DepartmentViewModelCadastro 
     {

@@ -79,7 +79,6 @@ namespace API
                         new List<string>()
                     }
                 });
-
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -93,7 +92,6 @@ namespace API
                     ValidateAudience = false
                 };
             });
-
         }
 
       
@@ -122,28 +120,21 @@ namespace API
             }
 
             app.UseSwagger();
-
-            //app.UseHttpsRedirection();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema Cadastro");
-                
             });
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             
             app.UseRouting();
-
-            app.UseAuthorization();
-            
             app.UseAuthentication();
-
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-           
         }
     }
 }
