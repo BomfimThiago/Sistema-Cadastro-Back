@@ -5,6 +5,7 @@ namespace API.ViewModels
 {
     public class EmployeeViewModel
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Contact { get; set; }
         public string Cpf { get; set; }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace API.Controllers
-{   
+{
     [Authorize]
     [Route("api/[controller]")]
     public class DepartmentController : CrudControllerBase<Department, DepartmentViewModelCadastro, DepartmentViewModel>
@@ -44,9 +44,9 @@ namespace API.Controllers
         }
         
         [HttpPut("{id}")]
-        public override async Task<IActionResult> Update([FromBody] DepartmentViewModelCadastro model)
+        public override async Task<IActionResult> Update([FromBody] DepartmentViewModel model)
         {
-            var departmentToUpdate = _mapper.Map<DepartmentViewModelCadastro, Department>(model);
+            var departmentToUpdate = _mapper.Map<DepartmentViewModel, Department>(model);
             
             var validator = new DepartmentValidator();
             var validationResult = await validator.ValidateAsync(departmentToUpdate);
@@ -58,7 +58,7 @@ namespace API.Controllers
 
             await _departmentDomain.Update(departmentToUpdate);
 
-            return NoContent();
+            return StatusCode(204);
         }
     }
 }

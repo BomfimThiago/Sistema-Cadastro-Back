@@ -51,9 +51,9 @@ namespace API.Controllers.Base
         }
 
         [HttpPut("{id}")]
-        public virtual async Task<IActionResult> Update([FromBody] TViewModelCadastro model)
+        public virtual async Task<IActionResult> Update([FromBody] TViewModel model)
         {
-            var objectToUpdate = _mapper.Map<TViewModelCadastro, T>(model);
+            var objectToUpdate = _mapper.Map<TViewModel, T>(model);
             
             await _domain.Update(objectToUpdate);
 

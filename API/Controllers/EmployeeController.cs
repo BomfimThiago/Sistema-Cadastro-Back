@@ -61,9 +61,9 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}")]
-        public override async Task<IActionResult> Update([FromBody] EmployeeViewModelCadastro model)
+        public override async Task<IActionResult> Update([FromBody] EmployeeViewModel model)
         {
-            var employeeToUpdate = _mapper.Map<EmployeeViewModelCadastro, Employee>(model);
+            var employeeToUpdate = _mapper.Map<EmployeeViewModel, Employee>(model);
 
             var validator = new EmployeeValidator();
             var validationResult = await validator.ValidateAsync(employeeToUpdate);
